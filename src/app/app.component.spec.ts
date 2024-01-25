@@ -1,11 +1,15 @@
-import { TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
 import { QuillModule } from 'ngx-quill';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
 
 describe('AppComponent', () => {
-  beforeEach(async () => {
-    await TestBed.configureTestingModule({
+  let component: AppComponent;
+  let fixture: ComponentFixture<AppComponent>;  
+
+  beforeEach(waitForAsync (() => {
+    TestBed.configureTestingModule({
       imports: [
         RouterTestingModule,
         QuillModule
@@ -15,20 +19,24 @@ describe('AppComponent', () => {
       ],
       providers: [
         QuillModule.forRoot().providers
-      ]
+      ],
+      schemas: [
+          NO_ERRORS_SCHEMA,
+      ],
     }).compileComponents();
+  }));
+
+  beforeEach(() => {
+    fixture = TestBed.createComponent(AppComponent);    
+    component = fixture.componentInstance;
   });
 
   it('should create the app', () => {
-    const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
-    const app = fixture.componentInstance;
-    expect(app).toBeTruthy();
+    expect(component).toBeTruthy();
   });
 
   it(`should have as title 'dummyApp'`, () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    fixture.detectChanges();
     const app = fixture.componentInstance;
     expect(app.title).toEqual('dummyApp');
   });

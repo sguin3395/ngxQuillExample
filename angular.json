@@ -35,6 +35,7 @@
               "./node_modules/quill/dist/quill.snow.css",
               "src/styles.scss"
             ],
+            "sourceMap": true,
             "scripts": []
           },
           "configurations": {
